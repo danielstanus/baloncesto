@@ -6,28 +6,9 @@ jobs:
   build: 
     runs-on: ubuntu-latest 
     steps: 
+      - name: descargar repostorio 
+        uses: actions/checkout@v3 
       - name: pruebas-unitarias 
-        run: echo "pruebas-unitarias" 
-      - name: empaquetar 
-        run: echo "empaquetar" 
- 
-  test: 
-    needs: build 
-    runs-on: self-hosted 
-    steps: 
-      - name: pruebas-funcionales 
-        run: echo "pruebas-funcionales" 
-   
-  qa: 
-    needs: test 
-    runs-on: self-hosted 
-    steps: 
-      - name: calidad-codigo 
-        run: echo "calidad-codigo" 
- 
-  deploy: 
-    needs: qa 
-    runs-on: ubuntu-latest 
-    steps: 
-      - name: despliegue 
-        run: echo "despliegue" 
+        run: mvn test 
+      - name: compilar la aplicación sin repetir pruebas 
+        run: mvn package -DskipTests=true  
