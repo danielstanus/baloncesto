@@ -41,9 +41,26 @@ jobs:
       - name: calidad-codigo 
         run: | 
           mvn sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -Dsonar.qualitygate.wait=true -Dsonar.login=admin -Dsonar.password=admin
- 
-  deploy: 
+  
+  stage: 
     needs: qa 
+    runs-on: ubuntu-latest 
+    continue-on-error: true 
+    steps: 
+      - name: Descargar repositorio 
+        uses: actions/checkout@v3 
+      - name: Crear el archivo .war 
+        run: | 
+          mvn package -DskipTests=true 
+      - name: Desplegar en Azure PreProducción
+        uses: Azure/webapps-deploy@v2 
+        with: 
+          app-name: baloncesto-pre-stanus 
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PRE_PUBLISH_PROFILE }} 
+          package: target/*.war 
+
+  deploy: 
+    needs: stage 
     runs-on: ubuntu-latest 
     if: github.ref == 'refs/heads/master' 
     steps: 
