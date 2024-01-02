@@ -9,6 +9,8 @@ public class ModeloDatos {
     private PreparedStatement set;
     private ResultSet rs;
 
+
+
     public void abrirConexion() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
