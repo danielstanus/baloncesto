@@ -10,33 +10,6 @@ public class ModeloDatos {
     private ResultSet rs;
 
 
-    public static void main(String[] args) {
-        try {
-            // Step 1: Load the JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            // Step 2: Establish a connection using the JDBC URL
-            String dbHost = System.getenv("DATABASE_HOST");
-            String dbPort = System.getenv("DATABASE_PORT");
-            String dbName = System.getenv("DATABASE_NAME");
-            String dbUser = System.getenv("DATABASE_USER");
-            String dbPass = System.getenv("DATABASE_PASS");
-
-            String url = dbHost + ":" + dbPort + "/" + dbName;
-            Connection connection = DriverManager.getConnection(url, dbUser, dbPass);
-            // Step 3: Perform database operations
-            // ...
-            // Step 4: Close the connection
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            System.out.println("JDBC driver not found!");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("Error connecting to the database!");
-            e.printStackTrace();
-        }
-    }
-
-
     public void abrirConexion() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

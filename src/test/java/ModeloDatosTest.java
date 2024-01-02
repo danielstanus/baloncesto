@@ -21,8 +21,6 @@ public class ModeloDatosTest {
         String nombre = ""; 
         ModeloDatos instance = new ModeloDatos(); 
 
-        instance.abrirConexion();
-
         boolean expResult = false; 
         boolean result = instance.existeJugador(nombre); 
         assertEquals(expResult, result); 
@@ -33,8 +31,6 @@ public class ModeloDatosTest {
     @Test 
     public void testActualizarJugador() { 
         System.out.println("Iniciando prueba de actualizarJugador");
-
-        modeloDatos.abrirConexion();
 
         // Datos de prueba
         String nombreJugador = "Rudy";
