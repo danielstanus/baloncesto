@@ -46,6 +46,7 @@ jobs:
     needs: qa 
     runs-on: ubuntu-latest 
     continue-on-error: true 
+    if: github.ref == 'refs/heads/master' 
     steps: 
       - name: Descargar repositorio 
         uses: actions/checkout@v3 

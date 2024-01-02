@@ -10,6 +10,7 @@ public class ModeloDatos {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
             // Con variables de entorno
             String dbHost = System.getenv().get("DATABASE_HOST");
