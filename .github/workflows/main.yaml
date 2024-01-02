@@ -23,8 +23,8 @@ jobs:
           sh /usr/local/tomcat/bin/catalina.sh stop 
           sh /usr/local/tomcat/bin/catalina.sh start 
       - name: realizar pruebas unitarias 
-        run: |   
-          mvn failsafe:unit-test failsafe:verify    
+        run: |    
+          mvn test failsafe:verify
       - name: realizar pruebas funcionales 
         run: |   
           mvn failsafe:integration-test failsafe:verify 
