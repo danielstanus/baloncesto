@@ -1,44 +1,56 @@
-
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Acb extends HttpServlet {
 
     private ModeloDatos bd;
 
-    public void init(ServletConfig cfg) throws ServletException {
+    @Override
+    public void init() throws ServletException {
         bd = new ModeloDatos();
         bd.abrirConexion();
     }
 
+    @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        HttpSession s = req.getSession(true);
-    
-        // Verifica qué botón se ha presionado
+        HttpSession session = req.getSession(true);
+
+        // Verificar qué botón se ha presionado
         if (req.getParameter("btnVotar") != null) {
-            String nombreP = (String) req.getParameter("txtNombre");
-            String nombre = (String) req.getParameter("R1");
-            if ("Otros".equals(nombre)) {
-                nombre = (String) req.getParameter("txtOtros");
-            }
-            if (bd.existeJugador(nombre)) {
-                bd.actualizarJugador(nombre);
-            } else {
-                bd.insertarJugador(nombre);
-            }
-            s.setAttribute("nombreCliente", nombreP);
-            // Llamada a la página jsp que nos da las gracias
-            res.sendRedirect(res.encodeRedirectURL("TablaVotos.jsp"));
-    
+            handleVotar(req, session, res);
         } else if (req.getParameter("btnResetVotos") != null) {
-            // Lógica para poner los votos a cero
-            bd.resetVotosJugadores();
-            res.sendRedirect(res.encodeRedirectURL("TablaVotos.jsp"));
-    
-        } 
+            handleResetVotos(res);
+        }
     }
 
+    private void handleVotar(HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException {
+        String nombreP = req.getParameter("txtNombre");
+        String nombre = req.getParameter("R1");
+
+        if ("Otros".equals(nombre)) {
+            nombre = req.getParameter("txtOtros");
+        }
+
+        if (bd.existeJugador(nombre)) {
+            bd.actualizarJugador(nombre);
+        } else {
+            bd.insertarJugador(nombre);
+        }
+
+        session.setAttribute("nombreCliente", nombreP);
+        res.sendRedirect(res.encodeRedirectURL("TablaVotos.jsp"));
+    }
+
+    private void handleResetVotos(HttpServletResponse res) throws IOException {
+        bd.resetVotosJugadores();
+        res.sendRedirect(res.encodeRedirectURL("TablaVotos.jsp"));
+    }
+
+    @Override
     public void destroy() {
         bd.cerrarConexion();
         super.destroy();
