@@ -10,28 +10,31 @@ public class ModeloDatos {
     private ResultSet rs;
 
 
-    public static void main(String[] args) { 
-        Connection dbConnection = null; 
-          try { 
-            String url = "jdbc:mysql://localhost:3306/baloncesto"; 
-            Properties info = new Properties(); 
-            info.put("user", "root"); 
-            info.put("password", ""); 
-            
-            Class.forName("com.mysql.jdbc.Driver");   //Registering the driver
-            dbConnection = DriverManager.getConnection(url, info); 
-            if (dbConnection != null) { 
-              System.out.println("Successfully connected to MySQL database test"); 
-            } 
-          } catch (SQLException ex) { 
-            System.out.println("An error occurred while connecting MySQL databse"); 
-            ex.printStackTrace(); 
-          } 
-        } 
-
+    public static void main(String[] args) {
+        try {
+            // Step 1: Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // Step 2: Establish a connection using the JDBC URL
+            String url = "jdbc:mysql://localhost:3306/baloncesto";
+            String username = "usuario";
+            String password = "clave";
+            Connection connection = DriverManager.getConnection(url, username, password);
+            // Step 3: Perform database operations
+            // ...
+            // Step 4: Close the connection
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC driver not found!");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Error connecting to the database!");
+            e.printStackTrace();
+        }
+    }
 
 
     public void abrirConexion() {
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
