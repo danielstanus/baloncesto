@@ -1,6 +1,9 @@
 import java.sql.*;
+import java.util.logging.*;
 
 public class ModeloDatos {
+
+    private static final Logger LOGGER = Logger.getLogger(ModeloDatos.class.getName());
 
     private Connection con;
     private PreparedStatement set;
@@ -19,10 +22,11 @@ public class ModeloDatos {
 
             String url = dbHost + ":" + dbPort + "/" + dbName;
             con = DriverManager.getConnection(url, dbUser, dbPass);
+            LOGGER.info("Conexión establecida con éxito.");
 
         } catch (Exception e) {
-            System.out.println("No se ha podido conectar");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.severe("No se ha podido conectar.");
+            LOGGER.severe("El error es: " + e.getMessage());
         }
     }
 
@@ -84,9 +88,10 @@ public class ModeloDatos {
         try {
             if (con != null) {
                 con.close();
+                LOGGER.info("Conexión cerrada con éxito.");
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOGGER.severe("Error al cerrar la conexión: " + e.getMessage());
         }
     }
 
@@ -99,7 +104,7 @@ public class ModeloDatos {
                 set.close();
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            LOGGER.warning("Error al cerrar recursos: " + e.getMessage());
         }
     }
 }
