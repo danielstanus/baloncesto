@@ -10,6 +10,27 @@ public class ModeloDatos {
     private ResultSet rs;
 
 
+    public static void main(String[] args) { 
+        Connection dbConnection = null; 
+          try { 
+            String url = "jdbc:mysql://localhost:3306/baloncesto"; 
+            Properties info = new Properties(); 
+            info.put("user", "root"); 
+            info.put("password", ""); 
+            
+            Class.forName("com.mysql.jdbc.Driver");   //Registering the driver
+            dbConnection = DriverManager.getConnection(url, info); 
+            if (dbConnection != null) { 
+              System.out.println("Successfully connected to MySQL database test"); 
+            } 
+          } catch (SQLException ex) { 
+            System.out.println("An error occurred while connecting MySQL databse"); 
+            ex.printStackTrace(); 
+          } 
+        } 
+
+
+
     public void abrirConexion() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

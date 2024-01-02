@@ -13,6 +13,8 @@ public class ModeloDatosTest {
     public void setUp() {
         modeloDatos = new ModeloDatos(); 
         baseDeDatosPrueba = new HashMap<>();
+
+        modeloDatos.abrirConexion();
     }
 
     @Test 
@@ -20,6 +22,8 @@ public class ModeloDatosTest {
         System.out.println("Prueba de existeJugador"); 
         String nombre = ""; 
         ModeloDatos instance = new ModeloDatos(); 
+
+        instance.abrirConexion();
 
         boolean expResult = false; 
         boolean result = instance.existeJugador(nombre); 
