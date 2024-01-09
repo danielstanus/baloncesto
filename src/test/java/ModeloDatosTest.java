@@ -17,16 +17,16 @@ public class ModeloDatosTest {
         modeloDatos.abrirConexion();
     }
 
+
     @Test 
     public void testExisteJugador() { 
         System.out.println("Prueba de existeJugador"); 
         String nombre = ""; 
-        ModeloDatos instance = new ModeloDatos(); 
 
-        instance.abrirConexion();
+        modeloDatos.abrirConexion();
 
         boolean expResult = false; 
-        boolean result = instance.existeJugador(nombre); 
+        boolean result = modeloDatos.existeJugador(nombre); 
         assertEquals(expResult, result); 
         //fail("Fallo forzado."); 
     } 
