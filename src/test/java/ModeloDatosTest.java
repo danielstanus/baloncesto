@@ -9,7 +9,7 @@ public class ModeloDatosTest {
     @Test 
     public void testExisteJugador() { 
         System.out.println("Prueba de existeJugador"); 
-        String nombre = "Rudy1"; 
+        String nombre = "Rudy"; 
 
         ModeloDatos modeloDatos = new ModeloDatos(); 
         modeloDatos.abrirConexion();
