@@ -1,34 +1,33 @@
-name: CI 
- 
-on: push 
- 
-jobs: 
-  build: 
+name: CI
+
+on:
+  push:
+
+jobs:
+  build:
     runs-on: self-hosted
-    steps: 
-      - name: descargar repostorio 
-        uses: actions/checkout@v3 
-      - name: instalar aplicación en Tomcat 
-        run: | 
+    steps:
+      - name: descargar repositorio
+        uses: actions/checkout@v3
+      - name: instalar aplicación en Tomcat
+        run: |
           mvn package -DskipTests=true
-          cp -r target/Baloncesto /usr/local/tomcat/webapps 
-      - name: preparar base de datos de prueba 
-        run: | 
-          mysql -u root < db/baloncesto.sql 
-          export DATABASE_HOST = "jdbc:mysql://localhost" 
-          export DATABASE_PORT = "3306" 
-          export DATABASE_NAME = "baloncesto" 
-          export DATABASE_USER = "usuario" 
-          export DATABASE_PASS = "clave" 
-          sh /usr/local/tomcat/bin/catalina.sh stop 
-          sh /usr/local/tomcat/bin/catalina.sh start 
-      - name: realizar pruebas unitarias 
-        run: |    
-          mvn test failsafe:verify
-      - name: realizar pruebas funcionales 
-        run: |   
-          mvn failsafe:integration-test failsafe:verify 
-        
+          cp -r target/Baloncesto /usr/local/tomcat/webapps
+      - name: preparar base de datos de prueba
+        run: |
+          mysql -u root < db/baloncesto.sql
+          echo "DATABASE_HOST=jdbc:mysql://localhost" >> $GITHUB_ENV
+          echo "DATABASE_PORT=3306" >> $GITHUB_ENV
+          echo "DATABASE_NAME=baloncesto" >> $GITHUB_ENV
+          echo "DATABASE_USER=usuario" >> $GITHUB_ENV
+          echo "DATABASE_PASS=clave" >> $GITHUB_ENV
+          sh /usr/local/tomcat/bin/catalina.sh stop
+          sh /usr/local/tomcat/bin/catalina.sh start
+      - name: realizar pruebas unitarias
+        run: mvn test
+      - name: realizar pruebas funcionales
+        run: mvn failsafe:integration-test
+      
   test: 
     needs: build 
     runs-on: self-hosted 
