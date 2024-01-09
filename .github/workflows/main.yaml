@@ -16,7 +16,6 @@ jobs:
       - name: Preparar base de datos de prueba
         run: |
           mysql -u root < db/baloncesto.sql
-          
       - name: Preparar ficheros de configuracion y tomcat
       - shell: bash
         run: |
