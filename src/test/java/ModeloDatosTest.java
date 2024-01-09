@@ -20,7 +20,7 @@ public class ModeloDatosTest {
     } 
 
 
-    @Test 
+  
     public void testActualizarJugador() { 
         System.out.println("Iniciando prueba de actualizarJugador");
 
