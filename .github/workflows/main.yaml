@@ -22,9 +22,9 @@ jobs:
           ./vars/env_vars.sh
           /usr/local/tomcat/bin/catalina.sh stop
           /usr/local/tomcat/bin/catalina.sh start
-      - name: realizar pruebas unitarias
+      - name: Realizar pruebas unitarias
         run: mvn test
-      - name: realizar pruebas funcionales
+      - name: Realizar pruebas funcionales
         run: mvn failsafe:integration-test
       
   test: 

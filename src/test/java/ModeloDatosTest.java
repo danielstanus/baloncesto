@@ -15,6 +15,8 @@ public class ModeloDatosTest {
         baseDeDatosPrueba = new HashMap<>();
 
         modeloDatos.abrirConexion();
+
+        System.out.println("111111111 -- setUp FINISHED"); 
     }
 
 
@@ -22,8 +24,6 @@ public class ModeloDatosTest {
     public void testExisteJugador() { 
         System.out.println("Prueba de existeJugador"); 
         String nombre = ""; 
-
-        modeloDatos.abrirConexion();
 
         boolean expResult = false; 
         boolean result = modeloDatos.existeJugador(nombre); 

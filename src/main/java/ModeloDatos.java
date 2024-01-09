@@ -10,28 +10,6 @@ public class ModeloDatos {
     private ResultSet rs;
 
 
-    public static void main(String[] args) {
-        try {
-            // Step 1: Load the JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            // Step 2: Establish a connection using the JDBC URL
-            String url = "jdbc:mysql://localhost:3306/baloncesto";
-            String username = "usuario";
-            String password = "clave";
-            Connection connection = DriverManager.getConnection(url, username, password);
-            // Step 3: Perform database operations
-            // ...
-            // Step 4: Close the connection
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            System.out.println("JDBC driver not found!");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("Error connecting to the database!");
-            e.printStackTrace();
-        }
-    }
-
 
     public void abrirConexion() {
         try {
@@ -55,29 +33,6 @@ public class ModeloDatos {
         } catch (Exception e) {
             LOGGER.severe("No se ha podido conectar.");
             LOGGER.severe("El error es: " + e.getMessage());
-        }
-    }
-
-
-    public void abrirConexion2() {
-        
-        try {
-            // Step 1: Load the JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            // Step 2: Establish a connection using the JDBC URL
-            String url = "jdbc:mysql://localhost:3306/baloncesto";
-            String username = "usuario";
-            String password = "clave";
-            Connection connection = DriverManager.getConnection(url, username, password);
-
-            // // Step 4: Close the connection
-            // connection.close();
-        } catch (ClassNotFoundException e) {
-            System.out.println("JDBC driver not found!");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("Error connecting to the database!");
-            e.printStackTrace();
         }
     }
 
