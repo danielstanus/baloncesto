@@ -27,7 +27,7 @@ public class ModeloDatosTest {
         System.out.println("Iniciando prueba de actualizarJugador");
 
         ModeloDatos modeloDatos = new ModeloDatos(); 
-        baseDeDatosPrueba = new HashMap<>();
+        Map<String, Integer> baseDeDatosPrueba = new HashMap<>();
 
         modeloDatos.abrirConexion();
 
