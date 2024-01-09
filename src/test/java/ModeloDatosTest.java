@@ -25,6 +25,12 @@ public class ModeloDatosTest {
         System.out.println("Prueba de existeJugador"); 
         String nombre = ""; 
 
+
+        modeloDatos = new ModeloDatos(); 
+        baseDeDatosPrueba = new HashMap<>();
+
+        modeloDatos.abrirConexion();
+
         boolean expResult = false; 
         boolean result = modeloDatos.existeJugador(nombre); 
         assertEquals(expResult, result); 
@@ -35,6 +41,12 @@ public class ModeloDatosTest {
     @Test 
     public void testActualizarJugador() { 
         System.out.println("Iniciando prueba de actualizarJugador");
+
+        modeloDatos = new ModeloDatos(); 
+        baseDeDatosPrueba = new HashMap<>();
+
+        modeloDatos.abrirConexion();
+
 
         // Datos de prueba
         String nombreJugador = "Rudy";
