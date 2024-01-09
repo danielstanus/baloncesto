@@ -16,12 +16,13 @@ public class ModeloDatos {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Usar variables de entorno
-            String dbHost = System.getenv("DATABASE_HOST");
-            String dbPort = System.getenv("DATABASE_PORT");
-            String dbName = System.getenv("DATABASE_NAME");
-            String dbUser = System.getenv("DATABASE_USER");
-            String dbPass = System.getenv("DATABASE_PASS");
+            // Usar variables de entorno o valores por defecto
+            String dbHost = System.getenv("DATABASE_HOST") != null ? System.getenv("DATABASE_HOST") : "jdbc:mysql://localhost";
+            String dbPort = System.getenv("DATABASE_PORT") != null ? System.getenv("DATABASE_PORT") : "3306";
+            String dbName = System.getenv("DATABASE_NAME") != null ? System.getenv("DATABASE_NAME") : "baloncesto";
+            String dbUser = System.getenv("DATABASE_USER") != null ? System.getenv("DATABASE_USER") : "usuario";
+            String dbPass = System.getenv("DATABASE_PASS") != null ? System.getenv("DATABASE_PASS") : "clave";
+
 
             String url = dbHost + ":" + dbPort + "/" + dbName;
             

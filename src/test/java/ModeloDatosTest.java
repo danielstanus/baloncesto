@@ -12,8 +12,7 @@ public class ModeloDatosTest {
         String nombre = ""; 
 
         ModeloDatos modeloDatos = new ModeloDatos(); 
-
-        //modeloDatos.abrirConexion();
+        modeloDatos.abrirConexion();
 
         boolean expResult = false; 
         boolean result = modeloDatos.existeJugador(nombre); 
@@ -27,9 +26,9 @@ public class ModeloDatosTest {
         System.out.println("Iniciando prueba de actualizarJugador");
 
         ModeloDatos modeloDatos = new ModeloDatos(); 
-        Map<String, Integer> baseDeDatosPrueba = new HashMap<>();
+        modeloDatos.abrirConexion();
 
-        //modeloDatos.abrirConexion();
+        Map<String, Integer> baseDeDatosPrueba = new HashMap<>();
 
         // Datos de prueba
         String nombreJugador = "Rudy";
