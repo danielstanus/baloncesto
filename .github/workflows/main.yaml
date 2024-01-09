@@ -16,15 +16,12 @@ jobs:
       - name: Preparar base de datos de prueba
         run: mysql -u root < db/baloncesto.sql
       - name: Preparar ficheros de configuracion y tomcat
-        run:
-          shell: bash 
-            chmod +x vars/env_vars.sh
-            sh vars/env_vars.sh
-
-            sh /_work/baloncesto/baloncesto/vars/env_vars.sh 
-
-            sh /usr/local/tomcat/bin/catalina.sh stop
-            sh /usr/local/tomcat/bin/catalina.sh start
+        shell: bash
+        run: |
+          chmod +x vars/env_vars.sh
+          ./vars/env_vars.sh
+          /usr/local/tomcat/bin/catalina.sh stop
+          /usr/local/tomcat/bin/catalina.sh start
       - name: realizar pruebas unitarias
         run: mvn test
       - name: realizar pruebas funcionales
