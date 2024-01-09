@@ -9,7 +9,7 @@ public class ModeloDatos {
     private PreparedStatement set;
     private ResultSet rs;
 
-    private String ErrorMessage = "El error es: ";
+    private String MensajeError = "El error es: ";
 
 
     public void abrirConexion() {
@@ -32,7 +32,7 @@ public class ModeloDatos {
 
         } catch (Exception e) {
             LOGGER.severe("No se ha podido conectar.");
-            LOGGER.severe(ErrorMessage + e.getMessage());
+            LOGGER.severe(MensajeError + e.getMessage());
         }
     }
 
@@ -46,7 +46,7 @@ public class ModeloDatos {
             existe = rs.next();
         } catch (Exception e) {
             System.out.println("No lee de la tabla");
-            System.out.println(ErrorMessage + e.getMessage());
+            System.out.println(MensajeError + e.getMessage());
         } finally {
             cerrarRecursos();
         }
@@ -60,7 +60,7 @@ public class ModeloDatos {
             set.executeUpdate();
         } catch (Exception e) {
             System.out.println("No modifica la tabla");
-            System.out.println(ErrorMessage + e.getMessage());
+            System.out.println(MensajeError + e.getMessage());
         } finally {
             cerrarRecursos();
         }
@@ -85,7 +85,7 @@ public class ModeloDatos {
             set.executeUpdate();
         } catch (Exception e) {
             System.out.println("No inserta en la tabla");
-            System.out.println(ErrorMessage + e.getMessage());
+            System.out.println(MensajeError + e.getMessage());
         } finally {
             cerrarRecursos();
         }
