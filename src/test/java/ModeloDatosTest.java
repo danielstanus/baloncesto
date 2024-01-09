@@ -6,30 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class ModeloDatosTest { 
      
-    private ModeloDatos modeloDatos;
-    private Map<String, Integer> baseDeDatosPrueba;
-
-    @BeforeEach
-    public void setUp() {
-        modeloDatos = new ModeloDatos(); 
-        baseDeDatosPrueba = new HashMap<>();
-
-        modeloDatos.abrirConexion();
-
-        System.out.println("111111111 -- setUp FINISHED"); 
-    }
-
-
     @Test 
     public void testExisteJugador() { 
         System.out.println("Prueba de existeJugador"); 
         String nombre = ""; 
 
+        ModeloDatos modeloDatos = new ModeloDatos(); 
 
-        modeloDatos = new ModeloDatos(); 
-        baseDeDatosPrueba = new HashMap<>();
-
-        modeloDatos.abrirConexion();
+        //modeloDatos.abrirConexion();
 
         boolean expResult = false; 
         boolean result = modeloDatos.existeJugador(nombre); 
@@ -42,11 +26,10 @@ public class ModeloDatosTest {
     public void testActualizarJugador() { 
         System.out.println("Iniciando prueba de actualizarJugador");
 
-        modeloDatos = new ModeloDatos(); 
+        ModeloDatos modeloDatos = new ModeloDatos(); 
         baseDeDatosPrueba = new HashMap<>();
 
         modeloDatos.abrirConexion();
-
 
         // Datos de prueba
         String nombreJugador = "Rudy";
