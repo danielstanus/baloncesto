@@ -8,9 +8,7 @@ public class ModeloDatos {
     private Connection con;
     private PreparedStatement set;
     private ResultSet rs;
-
     private String MensajeError = "El error es: ";
-
 
     public void abrirConexion() {
         try {
