@@ -4,13 +4,13 @@ on: push
  
 jobs: 
   build: 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps: 
       - name: descargar repostorio 
         uses: actions/checkout@v3 
       - name: instalar aplicación en Tomcat 
         run: | 
-          mvn package -DskipTests=true 
+          mvn package -DskipTests=true
           cp -r target/Baloncesto /usr/local/tomcat/webapps 
       - name: preparar base de datos de prueba 
         run: | 
