@@ -29,7 +29,7 @@ public class ModeloDatosTest {
         ModeloDatos modeloDatos = new ModeloDatos(); 
         Map<String, Integer> baseDeDatosPrueba = new HashMap<>();
 
-        modeloDatos.abrirConexion();
+        //modeloDatos.abrirConexion();
 
         // Datos de prueba
         String nombreJugador = "Rudy";
