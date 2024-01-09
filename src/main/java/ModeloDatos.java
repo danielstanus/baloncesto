@@ -34,8 +34,8 @@ public class ModeloDatos {
 
 
     public void abrirConexion() {
-        
         try {
+
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Usar variables de entorno
@@ -46,9 +46,8 @@ public class ModeloDatos {
             String dbPass = System.getenv("DATABASE_PASS");
 
             String url = dbHost + ":" + dbPort + "/" + dbName;
-
             
-            LOGGER.info("URL:"+url);
+            LOGGER.info("URL CONEXION:"+url);
 
             con = DriverManager.getConnection(url, dbUser, dbPass);
             LOGGER.info("Conexión establecida con éxito.");
