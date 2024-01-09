@@ -9,7 +9,7 @@ public class ModeloDatosTest {
     @Test 
     public void testExisteJugador() { 
         System.out.println("Prueba de existeJugador"); 
-        String nombre = "Rudy"; 
+        String nombre = "Rudy1"; 
 
         ModeloDatos modeloDatos = new ModeloDatos(); 
         modeloDatos.abrirConexion();
@@ -20,7 +20,7 @@ public class ModeloDatosTest {
     } 
 
 
-    
+
     @Test 
     public void testActualizarJugador() { 
         System.out.println("Iniciando prueba de actualizarJugador");
