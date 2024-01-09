@@ -46,6 +46,10 @@ public class ModeloDatos {
             String dbPass = System.getenv("DATABASE_PASS");
 
             String url = dbHost + ":" + dbPort + "/" + dbName;
+
+            
+            LOGGER.info("URL:"+url);
+
             con = DriverManager.getConnection(url, dbUser, dbPass);
             LOGGER.info("Conexión establecida con éxito.");
 
