@@ -72,7 +72,7 @@ public class ModeloDatos {
             set.executeUpdate();
         } catch (Exception e) {
             System.out.println("No resetea la tabla de Jugadores");
-            System.out.println(ErrorMessage + e.getMessage());
+            System.out.println(MensajeError + e.getMessage());
         } finally {
             cerrarRecursos();
         }
