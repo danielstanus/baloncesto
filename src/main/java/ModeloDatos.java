@@ -55,6 +55,30 @@ public class ModeloDatos {
         }
     }
 
+
+    public void abrirConexion2() {
+        
+        try {
+            // Step 1: Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // Step 2: Establish a connection using the JDBC URL
+            String url = "jdbc:mysql://localhost:3306/baloncesto";
+            String username = "usuario";
+            String password = "clave";
+            Connection connection = DriverManager.getConnection(url, username, password);
+
+            // // Step 4: Close the connection
+            // connection.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC driver not found!");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Error connecting to the database!");
+            e.printStackTrace();
+        }
+    }
+
+
     public boolean existeJugador(String nombre) {
         boolean existe = false;
         try {

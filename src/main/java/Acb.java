@@ -13,6 +13,7 @@ public class Acb extends HttpServlet {
     public void init() throws ServletException {
         bd = new ModeloDatos();
         bd.abrirConexion();
+        bd.abrirConexion2();
     }
 
     @Override
