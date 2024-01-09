@@ -45,8 +45,8 @@ public class ModeloDatos {
             rs = set.executeQuery();
             existe = rs.next();
         } catch (Exception e) {
-            System.out.println("No lee de la tabla");
-            System.out.println(MensajeError + e.getMessage());
+            LOGGER.severe("No lee de la tabla");
+            LOGGER.severe(MensajeError + e.getMessage());
         } finally {
             cerrarRecursos();
         }
@@ -59,8 +59,8 @@ public class ModeloDatos {
             set.setString(1, "%" + nombre + "%");
             set.executeUpdate();
         } catch (Exception e) {
-            System.out.println("No modifica la tabla");
-            System.out.println(MensajeError + e.getMessage());
+            LOGGER.severe("No modifica la tabla");
+            LOGGER.severe(MensajeError + e.getMessage());
         } finally {
             cerrarRecursos();
         }
@@ -71,8 +71,8 @@ public class ModeloDatos {
             set = con.prepareStatement("UPDATE Jugadores SET votos = 0");
             set.executeUpdate();
         } catch (Exception e) {
-            System.out.println("No resetea la tabla de Jugadores");
-            System.out.println(MensajeError + e.getMessage());
+            LOGGER.severe("No resetea la tabla de Jugadores");
+            LOGGER.severe(MensajeError + e.getMessage());
         } finally {
             cerrarRecursos();
         }
@@ -84,8 +84,8 @@ public class ModeloDatos {
             set.setString(1, nombre);
             set.executeUpdate();
         } catch (Exception e) {
-            System.out.println("No inserta en la tabla");
-            System.out.println(MensajeError + e.getMessage());
+            LOGGER.severe("No inserta en la tabla");
+            LOGGER.severe(MensajeError + e.getMessage());
         } finally {
             cerrarRecursos();
         }

@@ -43,6 +43,9 @@ public class ModeloDatosTest {
         // Verificar que los votos del jugador se han incrementado en 1
         assertEquals(votosActualizados, baseDeDatosPrueba.get(nombreJugador), "Los votos del jugador no se incrementaron correctamente");
     
+        // Reseteamos los votos
+        modeloDatos.resetVotosJugadores();
+
         System.out.println("Prueba de actualizarJugador completada con éxito");
     }
     
