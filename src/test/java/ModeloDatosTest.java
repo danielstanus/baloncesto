@@ -9,7 +9,7 @@ public class ModeloDatosTest {
     @Test 
     public void testExisteJugador() { 
         System.out.println("Prueba de existeJugador"); 
-        String nombre = ""; 
+        String nombre = "Pepito"; 
 
         ModeloDatos modeloDatos = new ModeloDatos(); 
         modeloDatos.abrirConexion();
@@ -17,7 +17,6 @@ public class ModeloDatosTest {
         boolean expResult = false; 
         boolean result = modeloDatos.existeJugador(nombre); 
         assertEquals(expResult, result); 
-        //fail("Fallo forzado."); 
     } 
 
 

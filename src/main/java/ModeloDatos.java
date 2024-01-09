@@ -29,7 +29,7 @@ public class ModeloDatos {
             LOGGER.info("URL CONEXION:"+url);
 
             con = DriverManager.getConnection(url, dbUser, dbPass);
-            LOGGER.info("Conexión establecida con éxito.");
+            LOGGER.info("Conexion establecida con exito.");
 
         } catch (Exception e) {
             LOGGER.severe("No se ha podido conectar.");
