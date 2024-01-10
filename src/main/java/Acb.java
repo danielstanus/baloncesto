@@ -26,7 +26,7 @@ public class Acb extends HttpServlet {
         } else if (req.getParameter("btnResetVotos") != null) {
             handleResetVotos(res);
         }else if (req.getParameter("btnVerVotos") != null) {
-            handleVerVotos(req, res);
+            handleVerVotos(req, session, res);
         }
     }
 
@@ -53,7 +53,7 @@ public class Acb extends HttpServlet {
         res.sendRedirect(res.encodeRedirectURL("index.html"));
     }
 
-	private void handleVerVotos(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+	private void handleVerVotos(HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException {
         List<VotoJugador> votos = bd.obtenerTodosLosVotos();
         
         // Genera la tabla HTML con los votos
@@ -75,10 +75,15 @@ public class Acb extends HttpServlet {
         tablaHTML.append("</table>");
     
         // Establece el contenido de la tabla en el atributo de la solicitud
-        req.setAttribute("tablaVotos", tablaHTML.toString());
+        // req.setAttribute("tablaVotos", tablaHTML.toString());
         
-        // Redirecciona a una página JSP para mostrar la tabla
-        req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
+        // // Redirecciona a una página JSP para mostrar la tabla
+        // req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
+
+
+        session.setAttribute("tablaVotos", tablaHTML.toString());
+        res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
+
     }
 
 
