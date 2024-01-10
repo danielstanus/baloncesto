@@ -47,7 +47,7 @@ public class Acb extends HttpServlet {
 
     private void handleResetVotos(HttpServletResponse res) throws IOException {
         bd.resetVotosJugadores();
-        res.sendRedirect(res.encodeRedirectURL("TablaVotos.jsp"));
+        //res.sendRedirect(res.encodeRedirectURL("TablaVotos.jsp"));
     }
 
     @Override
