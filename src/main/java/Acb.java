@@ -24,6 +24,8 @@ public class Acb extends HttpServlet {
             handleVotar(req, session, res);
         } else if (req.getParameter("btnResetVotos") != null) {
             handleResetVotos(res);
+        }else if (req.getParameter("btnVerVotos") != null) {
+            handleVerVotos(res);
         }
     }
 
@@ -49,6 +51,11 @@ public class Acb extends HttpServlet {
         bd.resetVotosJugadores();
         res.sendRedirect(res.encodeRedirectURL("index.html"));
     }
+
+	private void handleVerVotos(HttpServletResponse res) throws IOException {
+        res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
+    }
+
 
     @Override
     public void destroy() {

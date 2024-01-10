@@ -100,6 +100,19 @@ public class ModeloDatos {
         }
     }
 
+    private void cerrarRecursos() {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (set != null) {
+                set.close();
+            }
+        } catch (SQLException e) {
+            LOGGER.warning("Error al cerrar recursos: " + e.getMessage());
+        }
+    }
+
 
     public List<Map<String, Object>> obtenerVotosJugadores() {
         List<Map<String, Object>> votos = new ArrayList<>();
@@ -122,16 +135,4 @@ public class ModeloDatos {
     }
 
 
-    private void cerrarRecursos() {
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-            if (set != null) {
-                set.close();
-            }
-        } catch (SQLException e) {
-            LOGGER.warning("Error al cerrar recursos: " + e.getMessage());
-        }
-    }
 }

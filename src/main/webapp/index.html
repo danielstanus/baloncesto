@@ -3,30 +3,35 @@ Document : index.html
 Author : Roberto Barchino (aplicacion original)
 -->
 <html>
-    <head>
-        <title>Votacion mejor jugador liga ACB</title>
-        <link href="estilos.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-    <center><H1>Votaci&oacute;n al mejor jugador de la liga ACB</H1></center><hr>
+
+<head>
+    <title>Votacion mejor jugador liga ACB</title>
+    <link href="estilos.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <center>
+        <H1>Votaci&oacute;n al mejor jugador de la liga ACB</H1>
+    </center>
+    <hr>
     <form action="Acb" method="POST">
-        <p align="left">Nombre del Visitante: <input type="text" size="20"
-                                                     name="txtNombre">
+        <p align="left">Nombre del Visitante: <input type="text" size="20" name="txtNombre">
             eMail: <input type="text" size="20" name="txtMail"></p> REAL MADRID:<br>
 
-        <img src="Llull.jpg" width="100" height="67" alt="Llul"/>
+        <img src="Llull.jpg" width="100" height="67" alt="Llul" />
         <p align="left"><input type="radio" name="R1" value="Llull">Llull</p>
 
-        <img src="Rudy.jpg" width="100" height="67" alt="Rudy"/>
+        <img src="Rudy.jpg" width="100" height="67" alt="Rudy" />
         <p align="left"><input type="radio" name="R1" value="Rudy">Rudy</p>
 
-        <img src="Tavares.jpg" width="100" height="67" alt="Tavares"/>
+        <img src="Tavares.jpg" width="100" height="67" alt="Tavares" />
         <p align="left"><input type="radio" name="R1" value="Tavares">Tavares</p>
 
         <br>
         <p align="left"><input type="radio" name="R1" value="Otros">Otro
-            <input type="text" size="20" name="txtOtros"></p>
-        <p align="left"> 
+            <input type="text" size="20" name="txtOtros">
+        </p>
+        <p align="left">
             <input type="submit" name="btnVotar" value="Votar">
         </p>
     </form>
@@ -37,6 +42,12 @@ Author : Roberto Barchino (aplicacion original)
         <input type="submit" name="btnResetVotos" value="Poner votos a cero">
     </form>
 
-</body>
-</html>
 
+    <!-- Formulario para Ver votos -->
+    <form action="Acb" method="POST">
+        <input type="submit" name="btnVerVotos" value="Ver votos">
+    </form>
+
+</body>
+
+</html>
