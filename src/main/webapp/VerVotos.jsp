@@ -12,19 +12,18 @@
         <table border="1">
             <thead>
                 <tr>
-                    <th>Nombre del Jugador</th>
+                    <th>Nombre</th>
                     <th>Votos</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Aquí insertaremos las filas de la tabla dinámicamente -->
                 <% 
-                List<Map<String, Object>> votos = ModeloDatos.obtenerVotosJugadores();
-                for (Map<String, Object> voto : votos) { 
+                List<VotoJugador> votos = (List<VotoJugador>) request.getAttribute("listaVotos");
+                for (VotoJugador voto : votos) { 
                 %>
                     <tr>
-                        <td><%= voto.get("Nombre") %></td>
-                        <td><%= voto.get("Votos") %></td>
+                        <td><%= voto.getNombre() %></td>
+                        <td><%= voto.getVotos() %></td>
                     </tr>
                 <% } %>
             </tbody>
