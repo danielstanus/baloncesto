@@ -1,5 +1,10 @@
 import java.sql.*;
 import java.util.logging.*;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+
 
 public class ModeloDatos {
 
@@ -128,8 +133,8 @@ public class ModeloDatos {
             rs.close();
             set.close();
         } catch (Exception e) {
-            System.out.println("No se pudo obtener los votos de los jugadores");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.severe("No se pudo obtener los votos de los jugadores");
+            LOGGER.severe(MensajeError + e.getMessage());
         }
         return votos;
     }
