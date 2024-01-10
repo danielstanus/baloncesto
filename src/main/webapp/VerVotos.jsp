@@ -1,4 +1,4 @@
-<%@ page import="ModeloDatos.VotoJugador" %>
+<%@ page import="VotoJugador" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
