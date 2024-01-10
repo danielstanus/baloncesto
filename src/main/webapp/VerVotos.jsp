@@ -1,3 +1,6 @@
+<%@ page import="ModeloDatos.VotoJugador" %>
+<%@ page import="java.util.List" %>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Votos de los jugadores de la liga ACB</title>

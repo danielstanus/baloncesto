@@ -25,7 +25,7 @@ public class Acb extends HttpServlet {
         } else if (req.getParameter("btnResetVotos") != null) {
             handleResetVotos(res);
         }else if (req.getParameter("btnVerVotos") != null) {
-            handleVerVotos(res);
+            handleVerVotos(req, res);
         }
     }
 
@@ -52,8 +52,32 @@ public class Acb extends HttpServlet {
         res.sendRedirect(res.encodeRedirectURL("index.html"));
     }
 
-	private void handleVerVotos(HttpServletResponse res) throws IOException {
-        res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
+	private void handleVerVotos(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        List<VotoJugador> votos = bd.obtenerTodosLosVotos();
+        
+        // Genera la tabla HTML con los votos
+        StringBuilder tablaHTML = new StringBuilder();
+        tablaHTML.append("<table border='1'>");
+        tablaHTML.append("<thead>");
+        tablaHTML.append("<tr><th>Nombre del Jugador</th><th>Votos</th></tr>");
+        tablaHTML.append("</thead>");
+        tablaHTML.append("<tbody>");
+    
+        for (VotoJugador voto : votos) {
+            tablaHTML.append("<tr>");
+            tablaHTML.append("<td>").append(voto.getNombre()).append("</td>");
+            tablaHTML.append("<td>").append(voto.getVotos()).append("</td>");
+            tablaHTML.append("</tr>");
+        }
+    
+        tablaHTML.append("</tbody>");
+        tablaHTML.append("</table>");
+    
+        // Establece el contenido de la tabla en el atributo de la solicitud
+        req.setAttribute("tablaVotos", tablaHTML.toString());
+        
+        // Redirecciona a una página JSP para mostrar la tabla
+        req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
     }
 
 

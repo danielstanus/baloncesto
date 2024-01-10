@@ -119,23 +119,27 @@ public class ModeloDatos {
     }
 
 
-    public List<Map<String, Object>> obtenerVotosJugadores() {
-        List<Map<String, Object>> votos = new ArrayList<>();
+
+    public List<VotoJugador> obtenerTodosLosVotos() {
+        List<VotoJugador> votos = new ArrayList<>();
+
         try {
             set = con.prepareStatement("SELECT Nombre, Votos FROM Jugadores");
             rs = set.executeQuery();
+
             while (rs.next()) {
-                Map<String, Object> voto = new HashMap<>();
-                voto.put("Nombre", rs.getString("Nombre"));
-                voto.put("Votos", rs.getInt("Votos"));
+                String nombre = rs.getString("Nombre");
+                int cantidadVotos = rs.getInt("Votos");
+
+                VotoJugador voto = new VotoJugador(nombre, cantidadVotos);
                 votos.add(voto);
             }
         } catch (Exception e) {
-            LOGGER.severe("No se pudo obtener los votos de los jugadores");
-            LOGGER.severe(MensajeError + e.getMessage());
-        }finally {
+            LOGGER.severe("Error al obtener los votos de los jugadores: " + e.getMessage());
+        } finally {
             cerrarRecursos();
         }
+
         return votos;
     }
 
