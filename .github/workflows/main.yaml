@@ -1,36 +1,37 @@
-name: CI 
- 
-on: push 
- 
-jobs: 
-  build: 
-    runs-on: self-hosted 
-    steps: 
-      - name: descargar repostorio 
-        uses: actions/checkout@v3 
-      - name: instalar aplicación en Tomcat 
-        run: | 
-          mvn package -DskipTests=true 
-          cp -r target/Baloncesto /usr/local/tomcat/webapps 
-      - name: preparar base de datos de prueba 
-        run: | 
-          mysql -u root < db/baloncesto.sql 
-          export DATABASE_HOST="jdbc:mysql://localhost" 
-          export DATABASE_PORT="3306" 
-          export DATABASE_NAME="baloncesto" 
-          export DATABASE_USER="usuario" 
-          export DATABASE_PASS="clave" 
-          sh /usr/local/tomcat/bin/catalina.sh stop 
-          sh /usr/local/tomcat/bin/catalina.sh start 
-      - name: realizar pruebas funcionales 
-        run: |   
-          mvn failsafe:integration-test failsafe:verify 
-        
+name: CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v3
+      - name: Instalar aplicación en Tomcat
+        run: |
+          mvn package -DskipTests=true
+          cp -r target/Baloncesto /usr/local/tomcat/webapps
+      - name: Preparar base de datos de prueba
+        run: mysql -u root < db/baloncesto.sql
+      - name: Preparar ficheros de configuracion y tomcat
+        shell: bash
+        run: |
+          chmod +x vars/env_vars.sh
+          ./vars/env_vars.sh
+          /usr/local/tomcat/bin/catalina.sh stop
+          /usr/local/tomcat/bin/catalina.sh start
+      - name: Realizar pruebas unitarias
+        run: mvn test
+      - name: Realizar pruebas funcionales
+        run: mvn failsafe:integration-test
+      
   test: 
     needs: build 
     runs-on: self-hosted 
     steps: 
-      - name: pruebas-funcionales 
+      - name: Pruebas-funcionales 
         run: echo "pruebas-funcionales" 
    
   qa: 
@@ -45,7 +46,6 @@ jobs:
   stage: 
     needs: qa 
     runs-on: ubuntu-latest 
-    continue-on-error: true 
     steps: 
       - name: Descargar repositorio 
         uses: actions/checkout@v3 

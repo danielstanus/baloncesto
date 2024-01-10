@@ -18,4 +18,7 @@ INSERT INTO Jugadores (id, nombre, votos) VALUES (3, 'Tavares', 0);
 
 CREATE USER IF NOT EXISTS 'usuario'@'localhost' IDENTIFIED BY 'clave';
 GRANT ALL PRIVILEGES ON baloncesto.Jugadores TO 'usuario'@'localhost';
+
+GRANT ALL PRIVILEGES ON baloncesto.Jugadores TO 'root'@'localhost';
+
 FLUSH PRIVILEGES;
