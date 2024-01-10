@@ -1,87 +1,102 @@
 import java.sql.*;
+import java.util.logging.*;
 
 public class ModeloDatos {
 
+    private static final Logger LOGGER = Logger.getLogger(ModeloDatos.class.getName());
+
     private Connection con;
-    private Statement set;
+    private PreparedStatement set;
     private ResultSet rs;
+    private String MensajeError = "El error es: ";
 
     public void abrirConexion() {
-
         try {
+
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Con variables de entorno
-            String dbHost = System.getenv().get("DATABASE_HOST");
-            String dbPort = System.getenv().get("DATABASE_PORT");
-            String dbName = System.getenv().get("DATABASE_NAME");
-            String dbUser = System.getenv().get("DATABASE_USER");
-            String dbPass = System.getenv().get("DATABASE_PASS");
+            // Usar variables de entorno o valores por defecto
+            String dbHost = System.getenv("DATABASE_HOST") != null ? System.getenv("DATABASE_HOST") : "jdbc:mysql://localhost";
+            String dbPort = System.getenv("DATABASE_PORT") != null ? System.getenv("DATABASE_PORT") : "3306";
+            String dbName = System.getenv("DATABASE_NAME") != null ? System.getenv("DATABASE_NAME") : "baloncesto";
+            String dbUser = System.getenv("DATABASE_USER") != null ? System.getenv("DATABASE_USER") : "usuario";
+            String dbPass = System.getenv("DATABASE_PASS") != null ? System.getenv("DATABASE_PASS") : "clave";
+
 
             String url = dbHost + ":" + dbPort + "/" + dbName;
+            
             con = DriverManager.getConnection(url, dbUser, dbPass);
+            LOGGER.info("Conexion establecida con exito.");
 
         } catch (Exception e) {
-            // No se ha conectado
-            System.out.println("No se ha podido conectar");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.severe("No se ha podido conectar.");
+            LOGGER.severe(MensajeError + e.getMessage());
         }
     }
 
+
     public boolean existeJugador(String nombre) {
         boolean existe = false;
-        String cad;
         try {
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT * FROM Jugadores");
-            while (rs.next()) {
-                cad = rs.getString("Nombre");
-                cad = cad.trim();
-                if (cad.compareTo(nombre.trim()) == 0) {
-                    existe = true;
-                }
-            }
-            rs.close();
-            set.close();
+            set = con.prepareStatement("SELECT * FROM Jugadores WHERE Nombre = ?");
+            set.setString(1, nombre);
+            rs = set.executeQuery();
+            existe = rs.next();
         } catch (Exception e) {
-            // No lee de la tabla
-            System.out.println("No lee de la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.severe("No lee de la tabla");
+            LOGGER.severe(MensajeError + e.getMessage());
+        } finally {
+            cerrarRecursos();
         }
-        return (existe);
+        return existe;
     }
 
     public void actualizarJugador(String nombre) {
         try {
-            set = con.createStatement();
-            set.executeUpdate("UPDATE Jugadores SET votos=votos+1 WHERE nombre " + " LIKE '%" + nombre + "%'");
-            rs.close();
-            set.close();
+            set = con.prepareStatement("UPDATE Jugadores SET votos = votos + 1 WHERE nombre LIKE ?");
+            set.setString(1, "%" + nombre + "%");
+            set.executeUpdate();
         } catch (Exception e) {
-            // No modifica la tabla
-            System.out.println("No modifica la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.severe("No modifica la tabla");
+            LOGGER.severe(MensajeError + e.getMessage());
+        } finally {
+            cerrarRecursos();
+        }
+    }
+
+    public void resetVotosJugadores() {
+        try {
+            set = con.prepareStatement("UPDATE Jugadores SET votos = 0");
+            set.executeUpdate();
+        } catch (Exception e) {
+            LOGGER.severe("No resetea la tabla de Jugadores");
+            LOGGER.severe(MensajeError + e.getMessage());
+        } finally {
+            cerrarRecursos();
         }
     }
 
     public void insertarJugador(String nombre) {
         try {
-            set = con.createStatement();
-            set.executeUpdate("INSERT INTO Jugadores " + " (nombre,votos) VALUES ('" + nombre + "',1)");
-            rs.close();
-            set.close();
+            set = con.prepareStatement("INSERT INTO Jugadores (nombre, votos) VALUES (?, 1)");
+            set.setString(1, nombre);
+            set.executeUpdate();
         } catch (Exception e) {
-            // No inserta en la tabla
-            System.out.println("No inserta en la tabla");
-            System.out.println("El error es: " + e.getMessage());
+            LOGGER.severe("No inserta en la tabla");
+            LOGGER.severe(MensajeError + e.getMessage());
+        } finally {
+            cerrarRecursos();
         }
     }
 
     public void cerrarConexion() {
         try {
-            con.close();
+            if (con != null) {
+                con.close();
+                LOGGER.info("Conexión cerrada con éxito.");
+            }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOGGER.severe("Error al cerrar la conexión: " + e.getMessage());
         }
     }
 
@@ -107,4 +122,16 @@ public class ModeloDatos {
     }
 
 
+    private void cerrarRecursos() {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (set != null) {
+                set.close();
+            }
+        } catch (SQLException e) {
+            LOGGER.warning("Error al cerrar recursos: " + e.getMessage());
+        }
+    }
 }
