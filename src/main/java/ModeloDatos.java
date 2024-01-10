@@ -122,19 +122,19 @@ public class ModeloDatos {
     public List<Map<String, Object>> obtenerVotosJugadores() {
         List<Map<String, Object>> votos = new ArrayList<>();
         try {
-            set = con.createStatement();
-            rs = set.executeQuery("SELECT Nombre, Votos FROM Jugadores");
+            set = con.prepareStatement("SELECT Nombre, Votos FROM Jugadores");
+            rs = set.executeQuery();
             while (rs.next()) {
                 Map<String, Object> voto = new HashMap<>();
                 voto.put("Nombre", rs.getString("Nombre"));
-                voto.put("Votos", rs.getInt("Votos")); // Asumiendo que la columna se llama "Votos" en tu base de datos
+                voto.put("Votos", rs.getInt("Votos"));
                 votos.add(voto);
             }
-            rs.close();
-            set.close();
         } catch (Exception e) {
             LOGGER.severe("No se pudo obtener los votos de los jugadores");
             LOGGER.severe(MensajeError + e.getMessage());
+        }finally {
+            cerrarRecursos();
         }
         return votos;
     }
