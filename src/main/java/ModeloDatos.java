@@ -29,7 +29,7 @@ public class ModeloDatos {
 
 
             String url = dbHost + ":" + dbPort + "/" + dbName;
-            
+
             con = DriverManager.getConnection(url, dbUser, dbPass);
             LOGGER.info("Conexion establecida con exito.");
 

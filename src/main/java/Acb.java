@@ -26,7 +26,7 @@ public class Acb extends HttpServlet {
             handleVotar(req, session, res);
         } else if (req.getParameter("btnResetVotos") != null) {
             handleResetVotos(res);
-        }else if (req.getParameter("btnVerVotos") != null) {
+        } else if (req.getParameter("btnVerVotos") != null) {
             handleVerVotos(req, session, res);
         }
     }
@@ -55,7 +55,7 @@ public class Acb extends HttpServlet {
     }
 
 
-    private void handleVerVotos(HttpServletRequest req,HttpSession session, HttpServletResponse res) throws IOException, ServletException {
+    private void handleVerVotos(HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException, ServletException {
         List<Map<String, Object>> votos = bd.obtenerTodosLosVotos();
 
         session.setAttribute("listaVotos", votos);
