@@ -149,30 +149,4 @@ public class ModeloDatos {
     }
 
 
-
-    public List<VotoJugador> obtenerTodosLosVotos1() {
-        List<VotoJugador> votos = new ArrayList<>();
-
-        try {
-            set = con.prepareStatement("SELECT Nombre, Votos FROM Jugadores");
-            rs = set.executeQuery();
-
-            while (rs.next()) {
-                String nombre = rs.getString("Nombre");
-                int cantidadVotos = rs.getInt("Votos");
-
-                VotoJugador voto = new VotoJugador(nombre, cantidadVotos);
-                votos.add(voto);
-            }
-        } catch (Exception e) {
-            LOGGER.severe("Error al obtener los votos de los jugadores: " + e.getMessage());
-        } finally {
-            cerrarRecursos();
-        }
-
-        return votos;
-    }
-
-
-
 }

@@ -60,38 +60,9 @@ public class Acb extends HttpServlet {
         List<Map<String, Object>> votos = bd.obtenerTodosLosVotos();
         req.setAttribute("listaVotos", votos);
         req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
-    }
 
-	private void handleVerVotos1(HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException {
-        List<VotoJugador> votos = bd.obtenerTodosLosVotos1();
-        
-        // Genera la tabla HTML con los votos
-        StringBuilder tablaHTML = new StringBuilder();
-        tablaHTML.append("<table border='1'>");
-        tablaHTML.append("<thead>");
-        tablaHTML.append("<tr><th>Nombre del Jugador</th><th>Votos</th></tr>");
-        tablaHTML.append("</thead>");
-        tablaHTML.append("<tbody>");
-    
-        for (VotoJugador voto : votos) {
-            tablaHTML.append("<tr>");
-            tablaHTML.append("<td>").append(voto.getNombre()).append("</td>");
-            tablaHTML.append("<td>").append(voto.getVotos()).append("</td>");
-            tablaHTML.append("</tr>");
-        }
-    
-        tablaHTML.append("</tbody>");
-        tablaHTML.append("</table>");
-    
-        // Establece el contenido de la tabla en el atributo de la solicitud
-        // req.setAttribute("tablaVotos", tablaHTML.toString());
-        
-        // // Redirecciona a una página JSP para mostrar la tabla
-        // req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
-
-
-        session.setAttribute("tablaVotos", tablaHTML.toString());
-        res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
+        // session.setAttribute("tablaVotos", tablaHTML.toString());
+        // res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
 
     }
 
