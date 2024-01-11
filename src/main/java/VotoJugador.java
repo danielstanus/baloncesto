@@ -1,3 +1,4 @@
+
 public class VotoJugador {
     private String nombre;
     private int votos;

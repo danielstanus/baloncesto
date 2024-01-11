@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 public class Acb extends HttpServlet {
 
@@ -53,8 +54,15 @@ public class Acb extends HttpServlet {
         res.sendRedirect(res.encodeRedirectURL("index.html"));
     }
 
-	private void handleVerVotos(HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException {
-        List<VotoJugador> votos = bd.obtenerTodosLosVotos();
+
+    private void handleVerVotos(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        List<Map<String, Object>> votos = bd.obtenerTodosLosVotos();
+        req.setAttribute("listaVotos", votos);
+        req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
+    }
+
+	private void handleVerVotos1(HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException {
+        List<VotoJugador> votos = bd.obtenerTodosLosVotos1();
         
         // Genera la tabla HTML con los votos
         StringBuilder tablaHTML = new StringBuilder();

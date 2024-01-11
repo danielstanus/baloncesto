@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a36eb64-20c4-446a-9c3b-aac9008bcaa6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Acb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Acb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ModeloDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ModeloDatos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/VotoJugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotoJugador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/VerVotos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/VerVotos.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +18,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -31,7 +36,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "ver-votos",
-    "last_opened_file_path": "C:/Master2023/Baloncesto",
+    "last_opened_file_path": "C:/Master2023/Baloncesto/src/main/webapp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -39,6 +44,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Master2023\Baloncesto\src\main\webapp" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -49,6 +59,7 @@
       <updated>1704209554899</updated>
       <workItem from="1704209556258" duration="3514000" />
       <workItem from="1704960301487" duration="405000" />
+      <workItem from="1705010122275" duration="1879000" />
     </task>
     <servers />
   </component>
