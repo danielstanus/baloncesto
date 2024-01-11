@@ -1,4 +1,5 @@
-<%@ page import="VotoJugador" %>
+
+<%@ page import="src/main/java/VotoJugador.java" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
