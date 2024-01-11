@@ -27,7 +27,8 @@ public class Acb extends HttpServlet {
         } else if (req.getParameter("btnResetVotos") != null) {
             handleResetVotos(res);
         }else if (req.getParameter("btnVerVotos") != null) {
-            handleVerVotos(req, session, res);
+            handleVerVotos(req, res);
+            // handleVerVotos(req, session, res);
         }
     }
 
