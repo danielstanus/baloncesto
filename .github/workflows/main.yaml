@@ -46,6 +46,7 @@ jobs:
   stage: 
     needs: qa 
     runs-on: ubuntu-latest 
+    if: github.ref == 'refs/heads/master' 
     steps: 
       - name: Descargar repositorio 
         uses: actions/checkout@v3 
