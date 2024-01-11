@@ -9,7 +9,6 @@
         <h2>Votos de los jugadores de la liga ACB</h2>
        
 
-
             <%
                 session.getAttribute("listaVotos");
             %>
