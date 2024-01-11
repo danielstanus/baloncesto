@@ -27,8 +27,8 @@ public class Acb extends HttpServlet {
         } else if (req.getParameter("btnResetVotos") != null) {
             handleResetVotos(res);
         }else if (req.getParameter("btnVerVotos") != null) {
-            handleVerVotos(req, res);
-            // handleVerVotos(req, session, res);
+            // handleVerVotos(req, res);
+            handleVerVotos(req, session, res);
         }
     }
 
@@ -56,13 +56,13 @@ public class Acb extends HttpServlet {
     }
 
 
-    private void handleVerVotos(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    private void handleVerVotos(HttpServletRequest req,HttpSession session, HttpServletResponse res) throws IOException, ServletException {
         List<Map<String, Object>> votos = bd.obtenerTodosLosVotos();
-        req.setAttribute("listaVotos", votos);
-        req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
+        // req.setAttribute("listaVotos", votos);
+        // req.getRequestDispatcher("VerVotos.jsp").forward(req, res);
 
-        // session.setAttribute("tablaVotos", tablaHTML.toString());
-        // res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
+        session.setAttribute("listaVotos", votos);
+        res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
 
     }
 

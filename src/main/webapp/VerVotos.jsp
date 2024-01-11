@@ -7,7 +7,7 @@
         <link href="estilos.css" rel="stylesheet" type="text/css" /> 
     </head>
     <body  class="votos" >
-        <h2>Votos de los jugadores de la liga ACB</h2>
+        <h1>Votos de los jugadores de la liga ACB</h1>
 
 
         <%
