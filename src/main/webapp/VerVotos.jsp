@@ -1,5 +1,3 @@
-
-<%@ page import="VotoJugador" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
