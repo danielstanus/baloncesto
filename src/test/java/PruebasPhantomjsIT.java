@@ -2,8 +2,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -58,7 +56,7 @@ public class PruebasPhantomjsIT {
                 new String[]{"--web-security=no", "--ignore-ssl-errors=yes"}
         );
         driver = new PhantomJSDriver(caps);
-        
+
 
         driver.get(baseUrl + "/index.html");
 
