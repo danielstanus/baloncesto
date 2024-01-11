@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a36eb64-20c4-446a-9c3b-aac9008bcaa6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Acb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Acb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ModeloDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ModeloDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/VotoJugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VotoJugador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/VerVotos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/VerVotos.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="9a36eb64-20c4-446a-9c3b-aac9008bcaa6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +53,7 @@
       <updated>1704209554899</updated>
       <workItem from="1704209556258" duration="3514000" />
       <workItem from="1704960301487" duration="405000" />
-      <workItem from="1705010122275" duration="1879000" />
+      <workItem from="1705010122275" duration="2484000" />
     </task>
     <servers />
   </component>

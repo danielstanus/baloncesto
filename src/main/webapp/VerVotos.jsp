@@ -11,7 +11,7 @@
 
 
         <%
-            List<Map<String, Object>> votos = (List<Map<String, Object>>) request.getAttribute("listaVotos");
+            List<Map<String, Object>> votos = (List<Map<String, Object>>) session.getAttribute("listaVotos");
             if (votos != null && !votos.isEmpty()) {
         %>
         <table border="1">
