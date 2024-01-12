@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 public class Acb extends HttpServlet {
 
@@ -24,6 +26,8 @@ public class Acb extends HttpServlet {
             handleVotar(req, session, res);
         } else if (req.getParameter("btnResetVotos") != null) {
             handleResetVotos(res);
+        } else if (req.getParameter("btnVerVotos") != null) {
+            handleVerVotos(req, session, res);
         }
     }
 
@@ -49,6 +53,15 @@ public class Acb extends HttpServlet {
         bd.resetVotosJugadores();
         res.sendRedirect(res.encodeRedirectURL("index.html"));
     }
+
+
+    private void handleVerVotos(HttpServletRequest req, HttpSession session, HttpServletResponse res) throws IOException, ServletException {
+        List<Map<String, Object>> votos = bd.obtenerTodosLosVotos();
+
+        session.setAttribute("listaVotos", votos);
+        res.sendRedirect(res.encodeRedirectURL("VerVotos.jsp"));
+    }
+
 
     @Override
     public void destroy() {

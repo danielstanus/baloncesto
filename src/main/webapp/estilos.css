@@ -1,8 +1,14 @@
-body { 
-    color: white; 
-    background-color: darkblue; 
-    } 
-    .resultado { 
-    color: yellow; 
-    background-color: darkred; 
-    }
+body {
+    color: white;
+    background-color: darkblue;
+}
+
+.resultado {
+    color: yellow;
+    background-color: darkred;
+}
+
+.votos {
+    color: whitesmoke;
+    background-color: black;
+}

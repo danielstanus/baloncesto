@@ -1,5 +1,10 @@
 import java.sql.*;
 import java.util.logging.*;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+
 
 public class ModeloDatos {
 
@@ -24,7 +29,7 @@ public class ModeloDatos {
 
 
             String url = dbHost + ":" + dbPort + "/" + dbName;
-            
+
             con = DriverManager.getConnection(url, dbUser, dbPass);
             LOGGER.info("Conexion establecida con exito.");
 
@@ -112,4 +117,36 @@ public class ModeloDatos {
             LOGGER.warning("Error al cerrar recursos: " + e.getMessage());
         }
     }
+
+
+    public List<Map<String, Object>> obtenerTodosLosVotos() {
+        List<Map<String, Object>> listaVotos = new ArrayList<>();
+
+        try {
+            // Realiza la consulta a la base de datos para obtener los votos
+            set = con.prepareStatement("SELECT Nombre, Votos FROM Jugadores");
+            rs = set.executeQuery();
+
+            // Itera sobre los resultados y agrega cada voto a la lista
+            while (rs.next()) {
+                String nombre = rs.getString("Nombre");
+                int cantidadVotos = rs.getInt("Votos");
+
+                Map<String, Object> votoMap = new HashMap<>();
+                votoMap.put("nombre", nombre);
+                votoMap.put("votos", cantidadVotos);
+
+                listaVotos.add(votoMap);
+            }
+
+        } catch (Exception e) {
+            LOGGER.severe("Error al obtener los votos de los jugadores: " + e.getMessage());
+        } finally {
+            cerrarRecursos();
+        }
+
+        return listaVotos;
+    }
+
+
 }
