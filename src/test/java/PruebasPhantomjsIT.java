@@ -56,8 +56,6 @@ public class PruebasPhantomjsIT {
                 new String[]{"--web-security=no", "--ignore-ssl-errors=yes"}
         );
         driver = new PhantomJSDriver(caps);
-
-
         driver.get(baseUrl + "/index.html");
 
         // Encuentra y pulsa el botón "Poner votos a cero"
@@ -78,6 +76,49 @@ public class PruebasPhantomjsIT {
     }
 
 
+
+    @Test
+    public void pruebaVotarNuevoJugador() {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setJavascriptEnabled(true);
+
+        caps.setCapability(
+                PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
+                "/usr/bin/phantomjs"
+        );
+        caps.setCapability(
+                PhantomJSDriverService.PHANTOMJS_CLI_ARGS,
+                new String[]{"--web-security=no", "--ignore-ssl-errors=yes"}
+        );
+        driver = new PhantomJSDriver(caps);
+        driver.get(baseUrl + "/index.html");
+
+        // Encuentra la caja de texto y escribe el nombre del nuevo jugador
+        WebElement cajaNombre = driver.findElement(By.name("txtOtros"));
+        cajaNombre.sendKeys("JugadorNuevo");
+
+        // Marca la opción "Otro"
+        WebElement opcionOtro = driver.findElement(By.id("radioButtonOtros"));
+        opcionOtro.click();
+
+        // Encuentra y pulsa el botón "Votar"
+        WebElement botonVotar = driver.findElement(By.name("btnVotar"));
+        botonVotar.click();
+
+        // Vuelve a la página principal
+        driver.get(baseUrl + "/index.html");
+
+        // Encuentra y pulsa el botón "Ver votos"
+        WebElement botonVerVotos = driver.findElement(By.id("btnVerVotos"));
+        botonVerVotos.click();
+
+        // Verifica que el nuevo jugador tiene 1 voto en la página "VerVotos.jsp"
+        WebElement tablaVotos = driver.findElement(By.tagName("table"));
+        WebElement cuerpoTabla = tablaVotos.findElement(By.tagName("tbody"));
+        WebElement filaNuevoJugador = cuerpoTabla.findElement(By.xpath("//tr[contains(., 'JugadorNuevo')]"));
+        WebElement celdaVotosNuevoJugador = filaNuevoJugador.findElements(By.tagName("td")).get(1);
+        assertEquals("1", celdaVotosNuevoJugador.getText());
+    }
 
 
 
