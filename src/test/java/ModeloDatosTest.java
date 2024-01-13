@@ -40,7 +40,7 @@ public class ModeloDatosTest {
         Integer votosJugadorDespues= modeloDatos.obtenerVotosJugador(nombreJugador);
 
         // Verificar que los votos del jugador Rudy han incrementado en 1
-        assertEquals(votosJugadorDespues, votosJugadorAntes+1,"Los votos del jugador no se incrementaron correctamente");
+        assertEquals(votosJugadorDespues.intValue(), votosJugadorAntes+1,"Los votos del jugador no se incrementaron correctamente");
   
         // Ponemos los votos como lo tenia antes el jugador
         modeloDatos.actualizarVotoJugador(nombreJugador,votosJugadorAntes);
