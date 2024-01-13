@@ -35,7 +35,8 @@ public class Acb extends HttpServlet {
         } else {
             // La sesión ha caducado, regenerar una nueva sesión
             session = req.getSession(true);
-    
+            bd.abrirConexion();
+
             // Redirigir a una página inicial
             res.sendRedirect("index.html");
         }
