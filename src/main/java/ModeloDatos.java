@@ -150,7 +150,7 @@ public class ModeloDatos {
 
 
     public Integer obtenerVotosJugador(String nombre) {
-        Integer votos = null;
+        Integer votos = 0;
         try {
             set = con.prepareStatement("SELECT votos FROM Jugadores WHERE Nombre = ?");
             set.setString(1, "%" + nombre + "%");
@@ -165,6 +165,7 @@ public class ModeloDatos {
         } finally {
             cerrarRecursos();
         }
+        LOGGER.info("Votos jugador "+nombre+": "+votos);
         return votos;
     }
     
