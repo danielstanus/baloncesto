@@ -33,14 +33,16 @@ public class ModeloDatosTest {
         String nombreJugador = "Rudy";
         Integer votosJugadorAntes = modeloDatos.obtenerVotosJugador(nombreJugador);
 
-        // Actualizamos los votos de jugador en 1
+        // Actualizamos los votos de jugador Rudy en 1
+        modeloDatos.actualizarJugador(nombreJugador);
+        modeloDatos.actualizarJugador(nombreJugador);
         modeloDatos.actualizarJugador(nombreJugador);
 
         //Obtenemos los votos del jugador despues de actualizar
         Integer votosJugadorDespues= modeloDatos.obtenerVotosJugador(nombreJugador);
 
         // Verificar que los votos del jugador Rudy han incrementado en 1
-        assertEquals(votosJugadorDespues.intValue(), votosJugadorAntes+1,"Los votos del jugador no se incrementaron correctamente");
+        assertEquals(votosJugadorDespues.intValue(), votosJugadorAntes+3,"Los votos del jugador no se incrementaron correctamente");
   
         // Ponemos los votos como lo tenia antes el jugador
         modeloDatos.actualizarVotoJugador(nombreJugador,votosJugadorAntes);
