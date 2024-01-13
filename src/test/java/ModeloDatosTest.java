@@ -35,8 +35,6 @@ public class ModeloDatosTest {
 
         // Actualizamos los votos de jugador Rudy en 1
         modeloDatos.actualizarJugador(nombreJugador);
-        modeloDatos.actualizarJugador(nombreJugador);
-        modeloDatos.actualizarJugador(nombreJugador);
 
         //Obtenemos los votos del jugador despues de actualizar
         Integer votosJugadorDespues= modeloDatos.obtenerVotosJugador(nombreJugador);

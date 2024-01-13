@@ -152,7 +152,7 @@ public class ModeloDatos {
     public Integer obtenerVotosJugador(String nombre) {
         Integer votos = 0;
         try {
-            set = con.prepareStatement("SELECT votos FROM Jugadores WHERE Nombre = ?");
+            set = con.prepareStatement("SELECT votos FROM Jugadores WHERE Nombre LIKE ?");
             set.setString(1, "%" + nombre + "%");
             rs = set.executeQuery();
     
