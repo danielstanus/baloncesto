@@ -149,4 +149,38 @@ public class ModeloDatos {
     }
 
 
+    public Integer obtenerVotosJugador(String nombre) {
+        Integer votos = null;
+        try {
+            set = con.prepareStatement("SELECT votos FROM Jugadores WHERE Nombre = ?");
+            set.setString(1, "%" + nombre + "%");
+            rs = set.executeQuery();
+    
+            if (rs.next()) {
+                votos = rs.getInt("votos");
+            }
+        } catch (Exception e) {
+            LOGGER.severe("Error al obtener los votos del jugador desde la tabla");
+            LOGGER.severe(MensajeError + e.getMessage());
+        } finally {
+            cerrarRecursos();
+        }
+        return votos;
+    }
+    
+
+    public void actualizarVotoJugador(String nombre, Integer voto) {
+        try {
+            set = con.prepareStatement("UPDATE Jugadores SET votos = ? WHERE nombre LIKE ?");
+            set.setInt(1, voto);
+            set.setString(2, "%" + nombre + "%");
+            set.executeUpdate();
+        } catch (Exception e) {
+            LOGGER.severe("No modifica la tabla");
+            LOGGER.severe(MensajeError + e.getMessage());
+        } finally {
+            cerrarRecursos();
+        }
+    }
+
 }

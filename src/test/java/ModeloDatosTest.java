@@ -27,26 +27,23 @@ public class ModeloDatosTest {
     public void testActualizarJugador() {
         System.out.println("Iniciando prueba de actualizarJugador");
 
-        ModeloDatos modeloDatos = new ModeloDatos();
+        ModeloDatos modeloDatos  = new ModeloDatos();
         modeloDatos.abrirConexion();
 
-        Map<String, Integer> baseDeDatosPrueba = new HashMap<>();
-
-        // Datos de prueba
         String nombreJugador = "Rudy";
-        baseDeDatosPrueba.put(nombreJugador, 0);
+        Integer votosJugadorAntes = modeloDatos.obtenerVotosJugador(nombreJugador);
 
+        // Actualizamos los votos de jugador en 1
         modeloDatos.actualizarJugador(nombreJugador);
 
-        // Actualizar el valor del jugador en baseDeDatosPrueba después de llamar a actualizarJugador
-        Integer votosActualizados = baseDeDatosPrueba.get(nombreJugador) + 1;
-        baseDeDatosPrueba.put(nombreJugador, votosActualizados);
+        //Obtenemos los votos del jugador despues de actualizar
+        Integer votosJugadorDespues= modeloDatos.obtenerVotosJugador(nombreJugador);
 
-        // Verificar que los votos del jugador se han incrementado en 1
-        assertEquals(votosActualizados, baseDeDatosPrueba.get(nombreJugador), "Los votos del jugador no se incrementaron correctamente");
-
-        // Reseteamos los votos
-        modeloDatos.resetVotosJugadores();
+        // Verificar que los votos del jugador Rudy han incrementado en 1
+        assertEquals(votosJugadorDespues, votosJugadorAntes+1,"Los votos del jugador no se incrementaron correctamente");
+  
+        // Ponemos los votos como lo tenia antes el jugador
+        modeloDatos.actualizarVotoJugador(nombreJugador,votosJugadorAntes);
 
         System.out.println("Prueba de actualizarJugador completada con éxito");
     }
