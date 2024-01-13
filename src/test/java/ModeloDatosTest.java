@@ -31,6 +31,8 @@ public class ModeloDatosTest {
         modeloDatos.abrirConexion();
 
         String nombreJugador = "Rudy";
+
+         //Obtenemos los votos del jugador antes de actualizar
         Integer votosJugadorAntes = modeloDatos.obtenerVotosJugador(nombreJugador);
 
         // Actualizamos los votos de jugador Rudy en 1
