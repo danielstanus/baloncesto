@@ -19,15 +19,25 @@ public class Acb extends HttpServlet {
 
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
-
-        // Verificar qué botón se ha presionado
-        if (req.getParameter("btnVotar") != null) {
-            handleVotar(req, session, res);
-        } else if (req.getParameter("btnResetVotos") != null) {
-            handleResetVotos(res);
-        } else if (req.getParameter("btnVerVotos") != null) {
-            handleVerVotos(req, session, res);
+        HttpSession session = req.getSession();
+    
+        // Verificar si la sesión ha caducado
+        if (!session.isNew()) {
+            // La sesión no ha caducado
+            // Verificar qué botón se ha presionado
+            if (req.getParameter("btnVotar") != null) {
+                handleVotar(req, session, res);
+            } else if (req.getParameter("btnResetVotos") != null) {
+                handleResetVotos(res);
+            } else if (req.getParameter("btnVerVotos") != null) {
+                handleVerVotos(req, session, res);
+            }
+        } else {
+            // La sesión ha caducado, regenerar una nueva sesión
+            session = req.getSession(true);
+    
+            // Redirigir a una página inicial
+            res.sendRedirect("index.html");
         }
     }
 
